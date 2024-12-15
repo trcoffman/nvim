@@ -1,5 +1,6 @@
 return {
   'Almo7aya/openingh.nvim',
+  lazy = false,
   keys = {
     '<leader>gl',
     ':OpenInGHFile',
