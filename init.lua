@@ -395,10 +395,18 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        defaults = require('telescope.themes').get_ivy(),
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+          oldfiles = {
+            cwd_only = true,
+          },
+        },
         extensions = {
           ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
+            require('telescope.themes').get_ivy(),
           },
         },
       }
