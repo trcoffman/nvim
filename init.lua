@@ -192,7 +192,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Custom: File management keymaps
 vim.keymap.set('n', '<Leader>fs', ':w<CR>', { desc = 'Save file' })
-vim.keymap.set('n', '<Leader>fo', ':Oil .<CR>', { desc = 'Open oil in current directory.' })
 vim.keymap.set('n', '<Leader>fD', ':Remove!<CR>', { desc = 'Delete current file' })
 
 -- [[ Basic Autocommands ]]
