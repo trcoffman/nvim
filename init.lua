@@ -740,6 +740,7 @@ require('lazy').setup({
         typescript = { 'prettierd', lsp_format = 'last' },
         typescriptreact = { 'prettierd', lsp_format = 'last' },
         json = { 'prettierd' },
+        markdown = { 'prettierd' },
       },
     },
   },
