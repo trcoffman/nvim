@@ -20,11 +20,12 @@ return {
         return require('codecompanion.adapters').extend('copilot', {
           schema = {
             model = {
-              default = 'gpt-4o-2024-08-06',
-              -- default = 'claude-3.5-sonnet', TODO: Get copilot admins to enable Claude.
+              -- default = 'gpt-4o-2024-08-06',
+              default = 'claude-3.5-sonnet',
             },
             max_tokens = {
-              default = 8192,
+              -- default = 8192,
+              default = 148000,
             },
           },
         })
