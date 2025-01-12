@@ -5,6 +5,12 @@ return {
   config = function()
     local fzf = require 'fzf-lua'
     fzf.setup {
+      winopts = {
+        split = 'belowright new',
+        preview = {
+          layout = 'vertical',
+        },
+      },
       file = {
         path_shorten = true,
       },
