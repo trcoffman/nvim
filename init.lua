@@ -762,7 +762,6 @@ require('lazy').setup({
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
-          { name = 'buffer' },
         },
       }
 
@@ -778,13 +777,6 @@ require('lazy').setup({
             },
           },
         }),
-      })
-
-      cmp.setup.cmdline('/', {
-        mapping = cmp.mapping.preset.cmdline(),
-        sources = {
-          { name = 'buffer' },
-        },
       })
     end,
   },
