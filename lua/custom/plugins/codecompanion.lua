@@ -7,9 +7,38 @@ return {
     { 'MeanderingProgrammer/render-markdown.nvim', ft = { 'markdown', 'codecompanion' } },
   },
   opts = {
+    display = {
+      chat = {
+        diff = {
+          enabled = true,
+          close_chat_at = 240, -- Close an open chat buffer if the total columns of your display are less than...
+          layout = 'vertical', -- vertical|horizontal split for default provider
+          opts = { 'internal', 'filler', 'closeoff', 'algorithm:patience', 'followwrap', 'linematch:120' },
+          provider = 'mini_diff', -- default|mini_diff
+        },
+      },
+    },
     strategies = {
       chat = {
         adapter = 'copilot',
+        slash_commands = {
+          ['file'] = {
+            callback = 'strategies.chat.slash_commands.file',
+            description = 'Select a file',
+            opts = {
+              provider = 'fzf_lua', -- Other options include 'default', 'mini_pick', 'fzf_lua'
+              contains_code = true,
+            },
+          },
+          ['buffer'] = {
+            callback = 'strategies.chat.slash_commands.buffer',
+            description = 'Select a buffer',
+            opts = {
+              provider = 'fzf_lua', -- Other options include 'default', 'mini_pick', 'fzf_lua'
+              contains_code = true,
+            },
+          },
+        },
       },
       inline = {
         adapter = 'copilot',
