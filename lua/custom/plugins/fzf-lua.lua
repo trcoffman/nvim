@@ -24,7 +24,6 @@ return {
       },
       oldfiles = {
         include_current_session = true,
-        cwd_only = true,
         stat_file = true,
       },
       grep = {
@@ -42,7 +41,10 @@ return {
     vim.keymap.set('n', '<leader>sg', fzf.live_grep, { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<leader>sd', fzf.diagnostics_document, { desc = '[S]earch [D]iagnostics' })
     vim.keymap.set('n', '<leader>sr', fzf.resume, { desc = '[S]earch [R]esume' })
-    vim.keymap.set('n', '<leader>s.', fzf.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+    vim.keymap.set('n', '<leader>s,', fzf.oldfiles, { desc = '[S]earch Recent Files Globally' })
+    vim.keymap.set('n', '<leader>s.', function()
+      fzf.oldfiles { cwd_only = true }
+    end, { desc = '[S]earch Recent Files within cwd' })
     vim.keymap.set('n', '<leader><leader>', fzf.buffers, { desc = '[ ] Find existing buffers' })
   end,
 }
