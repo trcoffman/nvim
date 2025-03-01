@@ -6,7 +6,6 @@ return {
     local fzf = require 'fzf-lua'
     fzf.setup {
       winopts = {
-        split = 'belowright new',
         preview = {
           layout = 'vertical',
         },
@@ -20,14 +19,14 @@ return {
         syntax_limit_b = 1024 * 100, -- 100KB
       },
       file = {
-        path_shorten = true,
+        path_shorten = false,
       },
       oldfiles = {
         include_current_session = true,
         stat_file = true,
       },
       grep = {
-        path_shorten = true,
+        path_shorten = false,
       },
     }
 
