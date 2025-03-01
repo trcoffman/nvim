@@ -75,16 +75,16 @@ return { -- Fuzzy Finder (files, lsp, etc)
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
-    vim.keymap.set('n', '<leader>stc', builtin.commands, { desc = '[S]earch [C]ommands' })
-    vim.keymap.set('n', '<leader>sth', builtin.help_tags, { desc = '[S]earch [H]elp' })
-    vim.keymap.set('n', '<leader>stk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-    vim.keymap.set('n', '<leader>stf', builtin.find_files, { desc = '[S]earch [F]iles' })
-    vim.keymap.set('n', '<leader>sts', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-    vim.keymap.set('n', '<leader>stw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-    vim.keymap.set('n', '<leader>stg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-    vim.keymap.set('n', '<leader>std', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-    vim.keymap.set('n', '<leader>str', builtin.resume, { desc = '[S]earch [R]esume' })
-    vim.keymap.set('n', '<leader>st.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+    -- vim.keymap.set('n', '<leader>stc', builtin.commands, { desc = '[S]earch [C]ommands' })
+    -- vim.keymap.set('n', '<leader>sth', builtin.help_tags, { desc = '[S]earch [H]elp' })
+    -- vim.keymap.set('n', '<leader>stk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
+    -- vim.keymap.set('n', '<leader>stf', builtin.find_files, { desc = '[S]earch [F]iles' })
+    -- vim.keymap.set('n', '<leader>sts', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
+    -- vim.keymap.set('n', '<leader>stw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
+    -- vim.keymap.set('n', '<leader>stg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
+    -- vim.keymap.set('n', '<leader>std', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
+    -- vim.keymap.set('n', '<leader>str', builtin.resume, { desc = '[S]earch [R]esume' })
+    -- vim.keymap.set('n', '<leader>st.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     -- vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
     -- Slightly advanced example of overriding default behavior and theme
