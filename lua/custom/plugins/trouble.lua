@@ -1,7 +1,12 @@
 return {
   -- Do i actually need this?
   'folke/trouble.nvim',
-  opts = {}, -- for default options, refer to the configuration section for custom setup.
+  config = function()
+    require('trouble').setup()
+    require('which-key').add {
+      { '<leader>x', group = 'Trouble' },
+    }
+  end,
   cmd = 'Trouble',
   keys = {
     {
