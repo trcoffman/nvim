@@ -1,1 +1,5 @@
+* DONE Set up timber.nvim
+  CLOSED: [2025-03-03 Mon 08:32]
 * TODO Set up hover.nvim
+* TODO Get jest test debugging working
+* TODO Fix jest tests for monorepo
