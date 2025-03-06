@@ -69,6 +69,13 @@ return {
       desc = 'Run Last Test',
     },
     {
+      '<leader>ctd',
+      function()
+        require('neotest').run.run { strategy = 'dap' }
+      end,
+      desc = 'Debug Nearest Test',
+    },
+    {
       '<leader>ctL',
       function()
         require('neotest').run.run_last { strategy = 'dap' }
