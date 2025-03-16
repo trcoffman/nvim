@@ -158,6 +158,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 require 'custom.keymaps'
+require 'custom.treesitter-async-await'
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
