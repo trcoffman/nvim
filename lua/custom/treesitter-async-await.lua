@@ -12,6 +12,7 @@ local function find_node_ancestor(types, node)
 end
 
 local function add_async()
+  print 'Checking for async'
   vim.api.nvim_feedkeys('t', 'n', true)
 
   local text_before_cursor = vim.fn.getline('.'):sub(vim.fn.col '.' - 4, vim.fn.col '.' - 1)
@@ -24,6 +25,7 @@ local function add_async()
   if not function_node then
     return
   end
+  print 'Found function node'
   local function_node_text = vim.treesitter.get_node_text(function_node, 0)
   if vim.startswith(function_node_text, 'async ') then
     return
@@ -34,3 +36,12 @@ local function add_async()
 end
 
 vim.keymap.set('i', 't', add_async, { buffer = true })
+
+vim.api.nvim_create_augroup('typescript_keymaps', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+  group = 'typescript_keymaps',
+  pattern = { 'typescript', 'typescriptreact', 'tsx', 'javascript', 'jsx' },
+  callback = function()
+    vim.keymap.set('i', 't', add_async, { buffer = true })
+  end,
+})
