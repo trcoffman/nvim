@@ -36,6 +36,7 @@ return {
         },
       },
     },
+    notifier = {},
   },
   keys = {
     {
@@ -150,6 +151,12 @@ return {
         Snacks.explorer.reveal()
       end,
       desc = 'Reveal current file in [E]xplorer',
+    },
+    {
+      '<leader>gsl',
+      function()
+        require('snacks').gitbrowse.open()
+      end,
     },
   },
 }
