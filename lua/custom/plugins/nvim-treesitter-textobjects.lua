@@ -15,6 +15,7 @@ return {
             ['if'] = '@function.inner',
             ['ac'] = '@call.outer',
             ['ic'] = '@call.outer',
+            ['as'] = '@statement.outer',
           },
         },
         move = {
