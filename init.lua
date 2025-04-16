@@ -147,6 +147,8 @@ vim.opt.splitbelow = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+vim.o.winborder = 'rounded'
+
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
 
@@ -495,6 +497,13 @@ require('lazy').setup({
             return diagnostic_message[diagnostic.severity]
           end,
         },
+        virtual_lines = {
+          current_line = true,
+          source = 'if_many',
+          format = function(diagnostic)
+            return string.format('%s (%s):  %s', diagnostic.source or '', diagnostic.code, diagnostic.message)
+          end,
+        },
       }
 
       -- LSP servers and clients are able to communicate to each other what features they support.
@@ -692,7 +701,7 @@ require('lazy').setup({
       completion = {
         -- By default, you may press `<c-space>` to show the documentation.
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
-        documentation = { auto_show = false, auto_show_delay_ms = 500 },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 },
       },
 
       sources = {
@@ -711,7 +720,7 @@ require('lazy').setup({
       -- the rust implementation via `'prefer_rust_with_warning'`
       --
       -- See :h blink-cmp-config-fuzzy for more information
-      fuzzy = { implementation = 'lua' },
+      fuzzy = { implementation = 'prefer_rust_with_warning' },
 
       -- Shows a signature help window while you type arguments for a function
       signature = { enabled = true },
