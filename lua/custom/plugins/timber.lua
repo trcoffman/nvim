@@ -51,7 +51,7 @@ return {
       function()
         require('timber.summary').open()
       end,
-      desc = 'Open Timber Float',
+      desc = 'Open Timber Summary',
     },
   },
 }
