@@ -608,14 +608,24 @@ require('lazy').setup({
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
         local disable_filetypes = { c = true, cpp = true }
+        local eslint_format_filetypes = { javascript = true, typescript = true, typescriptreact = true }
+        local lsp_format_opt
+        local filter_opt = nil
         if disable_filetypes[vim.bo[bufnr].filetype] then
-          return nil
+          lsp_format_opt = 'never'
+        elseif eslint_format_filetypes[vim.bo[bufnr].filetype] then
+          lsp_format_opt = 'first'
+          filter_opt = function(client)
+            return client.name == 'eslint'
+          end
         else
-          return {
-            timeout_ms = 500,
-            lsp_format = 'fallback',
-          }
+          lsp_format_opt = 'fallback'
         end
+        return {
+          timeout_ms = 2500,
+          lsp_format = lsp_format_opt,
+          filter = filter_opt,
+        }
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
@@ -623,7 +633,11 @@ require('lazy').setup({
         -- python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { 'prettierd', lsp_format = 'last' },
+        typescript = { 'prettierd', lsp_format = 'last' },
+        typescriptreact = { 'prettierd', lsp_format = 'last' },
+        json = { 'prettierd' },
+        markdown = { 'prettierd' },
       },
     },
   },
