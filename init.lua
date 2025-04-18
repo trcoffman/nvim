@@ -472,7 +472,7 @@ require('lazy').setup({
 
       -- Diagnostic Config
       -- See :help vim.diagnostic.Opts
-      vim.diagnostic.config {
+      local diagnostic_config_virtual_text = {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
         underline = { severity = vim.diagnostic.severity.ERROR },
@@ -497,14 +497,28 @@ require('lazy').setup({
             return diagnostic_message[diagnostic.severity]
           end,
         },
+        virtual_lines = false,
+      }
+      local diagnostic_config_virtual_lines = vim.tbl_extend('force', diagnostic_config_virtual_text, {
+        virtual_text = false,
         virtual_lines = {
-          current_line = true,
           source = 'if_many',
           format = function(diagnostic)
             return string.format('%s (%s):  %s', diagnostic.source or '', diagnostic.code, diagnostic.message)
           end,
         },
-      }
+      })
+      vim.diagnostic.config(diagnostic_config_virtual_text)
+
+      local virtual_lines_enabled = true
+      vim.keymap.set('n', '<leader>tv', function()
+        virtual_lines_enabled = not virtual_lines_enabled
+        if virtual_lines_enabled then
+          vim.diagnostic.config(diagnostic_config_virtual_text)
+        else
+          vim.diagnostic.config(diagnostic_config_virtual_lines)
+        end
+      end, { desc = 'Toggle diagnostic [v]irtual_lines versus virtual_text' })
 
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
