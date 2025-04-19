@@ -594,9 +594,25 @@ require('lazy').setup({
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
+            -- KICKSTART DEFAULT
+            -- require('lspconfig')[server_name].setup(server)
+            -- CUSTOM REPLACEMENT
+            vim.lsp.enable(server_name)
+            vim.lsp.config(server_name, server)
           end,
         },
+
+        vim.lsp.enable 'sourcekit',
+        vim.lsp.config('sourcekit', {
+          cmd = { '/usr/bin/xcrun sourcekit-lsp' },
+          capabilities = {
+            workspace = {
+              didChangeWatchedFiles = {
+                dynamicRegistration = true,
+              },
+            },
+          },
+        }),
       }
     end,
   },
