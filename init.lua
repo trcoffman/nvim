@@ -708,7 +708,11 @@ require('lazy').setup({
       },
       'folke/lazydev.nvim',
       {
-        'giuxtaposition/blink-cmp-copilot',
+        'fang2hou/blink-copilot',
+        opts = {
+          max_completions = 1,
+          max_attempts = 2,
+        },
       },
     },
     --- @module 'blink.cmp'
@@ -760,18 +764,9 @@ require('lazy').setup({
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
           copilot = {
             name = 'copilot',
-            module = 'blink-cmp-copilot',
+            module = 'blink-copilot',
             score_offset = 100,
             async = true,
-            transform_items = function(_, items)
-              local CompletionItemKind = require('blink.cmp.types').CompletionItemKind
-              local kind_idx = #CompletionItemKind + 1
-              CompletionItemKind[kind_idx] = 'Copilot'
-              for _, item in ipairs(items) do
-                item.kind = kind_idx
-              end
-              return items
-            end,
           },
         },
       },
