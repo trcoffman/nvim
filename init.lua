@@ -775,6 +775,16 @@ require('lazy').setup({
           },
         },
       },
+      cmdline = {
+        keymap = {
+          preset = 'inherit',
+        },
+        completion = {
+          menu = {
+            auto_show = true,
+          },
+        },
+      },
 
       appearance = {
         kind_icons = {
