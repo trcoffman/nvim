@@ -4,10 +4,16 @@ return {
     'nvim-lua/plenary.nvim', -- required
     'sindrets/diffview.nvim', -- optional - Diff integration
 
-    'nvim-telescope/telescope.nvim',
+    'ibhagwan/fzf-lua',
   },
+  --@module 'neogit'
+  --@type neogit.SetupOpts
   opts = {
     graph_style = 'kitty',
+    integration = {
+      diffview = true, -- integrate with diffview
+      fzf_lua = true,
+    },
   },
   keys = {
     {
