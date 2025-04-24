@@ -6,5 +6,9 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   lazy = false,
-  config = true,
+  config = function()
+    require('octo').setup {
+      picker = 'snacks',
+    }
+  end,
 }
