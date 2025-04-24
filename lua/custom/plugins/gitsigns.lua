@@ -48,6 +48,9 @@ return {
         map('n', '<leader>ghb', function()
           gitsigns.blame_line { full = true }
         end, { desc = '[b]lame line' })
+        map('n', '<leader>gb', function()
+          gitsigns.blame()
+        end, { desc = '[b]lame' })
         map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = 'toggle [b]lame' })
         map('n', '<leader>ghd', gitsigns.diffthis, { desc = '[d]iff' })
         map('n', '<leader>ghD', function()
