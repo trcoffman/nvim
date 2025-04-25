@@ -6,6 +6,7 @@
   "codecompanion.nvim": { "branch": "main", "commit": "1b1bfc71f426a50ece54489078f5afe82b0af90c" },
   "conform.nvim": { "branch": "master", "commit": "372fc521f8421b7830ea6db4d6ea3bae1c77548c" },
   "copilot-lsp": { "branch": "main", "commit": "74dab52996103457f7a518d0692c2ed647ca989e" },
+  "diagram.nvim": { "branch": "master", "commit": "84fe677aa940605ef248f36c0ea23561690c95eb" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "fidget.nvim": { "branch": "main", "commit": "d9ba6b7bfe29b3119a610892af67602641da778e" },
   "flash.nvim": { "branch": "main", "commit": "3c942666f115e2811e959eabbdd361a025db8b63" },
