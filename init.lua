@@ -712,6 +712,7 @@ require('lazy').setup({
         opts = {
           max_completions = 1,
           max_attempts = 2,
+          debounce = 800,
         },
       },
     },
