@@ -26,13 +26,10 @@ return {
       log_watcher = {
         enabled = true,
         sources = {
-          javascript_log = {
+          log_file = {
             type = 'filesystem',
             name = 'Log File',
             path = '/tmp/timber.log',
-            buffer = {
-              syntax = 'javascript',
-            },
           },
         },
       },
