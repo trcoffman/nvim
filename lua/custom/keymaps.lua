@@ -45,3 +45,6 @@ vim.keymap.set('n', '<Leader>fD', ':Remove!<CR>', { desc = '[D]elete current fil
 
 -- Custom: Buffer management keymaps
 vim.keymap.set('n', '<Leader>bd', ':bd<CR>', { desc = '[D]elete buffer' })
+
+-- Get jumplist working
+vim.keymap.set('n', '<C-I>', '<C-I>', { desc = 'Move forward in jumplist' })
