@@ -31,6 +31,9 @@ return {
         },
       },
       sources = {
+        files = {
+          exclude = { '.jj' },
+        },
         explorer = {
           layout = 'sidebar',
         },
