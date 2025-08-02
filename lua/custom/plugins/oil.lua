@@ -9,6 +9,6 @@ return {
   --
   config = function()
     require('oil').setup()
-    vim.keymap.set('n', '<Leader>ff', ':Oil .<CR>', { desc = 'Open oil in current directory.' })
+    vim.keymap.set('n', '<Leader>ff', ':Oil<CR>', { desc = 'Open oil file manager' })
   end,
 }
