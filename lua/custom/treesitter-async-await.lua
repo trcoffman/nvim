@@ -35,13 +35,13 @@ local function add_async()
   vim.api.nvim_buf_set_text(0, start_row, start_col, start_row, start_col, { 'async ' })
 end
 
-vim.keymap.set('i', 't', add_async, { buffer = true })
-
-vim.api.nvim_create_augroup('typescript_keymaps', { clear = true })
-vim.api.nvim_create_autocmd('FileType', {
-  group = 'typescript_keymaps',
-  pattern = { 'typescript', 'typescriptreact', 'tsx', 'javascript', 'jsx' },
-  callback = function()
-    vim.keymap.set('i', 't', add_async, { buffer = true })
-  end,
-})
+-- vim.keymap.set('i', 't', add_async, { buffer = true })
+--
+-- vim.api.nvim_create_augroup('typescript_keymaps', { clear = true })
+-- vim.api.nvim_create_autocmd('FileType', {
+--   group = 'typescript_keymaps',
+--   pattern = { 'typescript', 'typescriptreact', 'tsx', 'javascript', 'jsx' },
+--   callback = function()
+--     vim.keymap.set('i', 't', add_async, { buffer = true })
+--   end,
+-- })
