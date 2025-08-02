@@ -59,6 +59,9 @@ return {
     'nvim-lua/plenary.nvim',
     'antoinemadec/FixCursorHold.nvim',
     'nvim-treesitter/nvim-treesitter',
+
+    -- Mark this as a depenency so that debugger loads right away
+    'mfussenegger/nvim-dap',
   },
   keys = {
     {
@@ -109,7 +112,7 @@ return {
     return {
       adapters = {
         require 'neotest-jest' {
-          jestCommand = 'yarn test',
+          jestCommand = 'yarn jest',
           jestConfigFile = find_jest_config,
           env = { CI = true },
           cwd = function()
