@@ -1,11 +1,11 @@
 {
   "FixCursorHold.nvim": { "branch": "master", "commit": "1900f89dc17c603eec29960f57c00bd9ae696495" },
   "LuaSnip": { "branch": "master", "commit": "458560534a73f7f8d7a11a146c801db00b081df0" },
-  "blink-copilot": { "branch": "main", "commit": "bdfbc1554951dfe26431dfa5f182979531b5784f" },
   "blink.cmp": { "branch": "main", "commit": "327fff91fe6af358e990be7be1ec8b78037d2138" },
   "codecompanion.nvim": { "branch": "main", "commit": "89382c89253832436a8bb2322ba1098285486000" },
   "conform.nvim": { "branch": "master", "commit": "b4aab989db276993ea5dcb78872be494ce546521" },
-  "copilot-lsp": { "branch": "main", "commit": "173c015ea61cb493997e3b1fa80bf57f6db58c26" },
+  "copilot-lsp": { "branch": "main", "commit": "5030766af6dce2181d48b928537ebe1919ec8d22" },
+  "copilot.lua": { "branch": "master", "commit": "abc8bda97271624051f814ec8a06088e658359ed" },
   "diagram.nvim": { "branch": "master", "commit": "99f0415ac157d69e7208bc93504fb70d180d6b44" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "fidget.nvim": { "branch": "main", "commit": "3f5475949679953af6d78654db29b944fa826e6a" },
