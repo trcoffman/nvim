@@ -624,6 +624,7 @@ require('lazy').setup({
 
   { -- Autoformat
     'stevearc/conform.nvim',
+    enabled = vim.g.jj_diffconflicts_disable_conform ~= 'true',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
