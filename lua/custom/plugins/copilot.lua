@@ -12,11 +12,11 @@ return {
         auto_trigger = true,
       },
       nes = {
-        enabled = true,
+        enabled = false,
         auto_trigger = true,
         keymap = {
           accept_and_goto = '<leader>p',
-          accept = false,
+          accept = '<M-o>',
           dismiss = '<Esc>',
         },
       },
