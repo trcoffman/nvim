@@ -658,7 +658,7 @@ require('lazy').setup({
           lsp_format_opt = 'fallback'
         end
         return {
-          timeout_ms = 2500,
+          timeout_ms = 5000,
           lsp_format = lsp_format_opt,
           filter = filter_opt,
         }
