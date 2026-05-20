@@ -1,9 +1,12 @@
 ---@type LazySpec
 return {
-  'mawkler/jsx-element.nvim',
+  -- fork of mawkler/jsx-element.nvim
+  'trcoffman/jsx-element.nvim',
   dependencies = {
-    'nvim-treesitter/nvim-treesitter',
-    'nvim-treesitter/nvim-treesitter-textobjects',
+    -- fork of nvim-treesitter/nvim-treesitter
+    'trcoffman/nvim-treesitter',
+    -- fork of nvim-treesitter/nvim-treesitter-textobjects
+    'trcoffman/nvim-treesitter-textobjects',
   },
   ft = { 'typescriptreact', 'javascriptreact', 'javascript' },
   opts = {},

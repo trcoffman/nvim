@@ -1,3 +1,4 @@
 return {
-  'tpope/vim-eunuch',
+  -- fork of tpope/vim-eunuch
+  'trcoffman/vim-eunuch',
 }

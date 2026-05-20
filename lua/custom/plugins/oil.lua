@@ -1,10 +1,12 @@
 return {
-  'stevearc/oil.nvim',
+  -- fork of stevearc/oil.nvim
+  'trcoffman/oil.nvim',
   ---@module 'oil'
   ---@type oil.SetupOpts
   opts = {},
   -- Optional dependencies
-  dependencies = { { 'echasnovski/mini.icons', opts = {} } },
+  -- fork of echasnovski/mini.icons
+  dependencies = { { 'trcoffman/mini.icons', opts = {} } },
   -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   --
   config = function()

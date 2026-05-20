@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
-  'folke/flash.nvim',
+  -- fork of folke/flash.nvim
+  'trcoffman/flash.nvim',
   event = 'VeryLazy',
   enabled = true,
   ---@type Flash.Config

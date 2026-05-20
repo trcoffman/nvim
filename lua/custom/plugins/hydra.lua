@@ -1,5 +1,6 @@
 ---@type LazySpec
 return {
-  'nvimtools/hydra.nvim',
+  -- fork of nvimtools/hydra.nvim
+  'trcoffman/hydra.nvim',
   lazy = false,
 }

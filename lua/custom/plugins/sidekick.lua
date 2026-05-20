@@ -1,5 +1,6 @@
 return {
-  'folke/sidekick.nvim',
+  -- fork of folke/sidekick.nvim
+  'trcoffman/sidekick.nvim',
   opts = {},
   keys = {
     {

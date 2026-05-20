@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
-  'Goose97/timber.nvim',
+  -- fork of Goose97/timber.nvim
+  'trcoffman/timber.nvim',
   version = '*', -- Use for stability; omit to use `main` branch for the latest features
   event = 'VeryLazy',
   config = function()

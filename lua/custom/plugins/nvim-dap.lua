@@ -1,12 +1,15 @@
 return {
-  'mfussenegger/nvim-dap',
+  -- fork of mfussenegger/nvim-dap
+  'trcoffman/nvim-dap',
   desc = 'Debugging support. Requires language specific adapters to be configured. (see lang extras)',
 
   dependencies = {
-    'rcarriga/nvim-dap-ui',
+    -- fork of rcarriga/nvim-dap-ui
+    'trcoffman/nvim-dap-ui',
     -- virtual text for the debugger
     {
-      'theHamsta/nvim-dap-virtual-text',
+      -- fork of theHamsta/nvim-dap-virtual-text
+      'trcoffman/nvim-dap-virtual-text',
       opts = {},
     },
   },

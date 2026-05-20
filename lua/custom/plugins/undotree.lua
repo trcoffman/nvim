@@ -1,3 +1,4 @@
 return {
-  'mbbill/undotree',
+  -- fork of mbbill/undotree
+  'trcoffman/undotree',
 }

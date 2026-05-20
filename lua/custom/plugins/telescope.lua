@@ -1,12 +1,15 @@
 return { -- Fuzzy Finder (files, lsp, etc)
-  'nvim-telescope/telescope.nvim',
+  -- fork of nvim-telescope/telescope.nvim
+  'trcoffman/telescope.nvim',
   enabled = false,
   event = 'VimEnter',
   branch = '0.1.x',
   dependencies = {
-    'nvim-lua/plenary.nvim',
+    -- fork of nvim-lua/plenary.nvim
+    'trcoffman/plenary.nvim',
     { -- If encountering errors, see telescope-fzf-native README for installation instructions
-      'nvim-telescope/telescope-fzf-native.nvim',
+      -- fork of nvim-telescope/telescope-fzf-native.nvim
+      'trcoffman/telescope-fzf-native.nvim',
 
       -- `build` is used to run some command when the plugin is installed/updated.
       -- This is only run then, not every time Neovim starts up.
@@ -18,10 +21,12 @@ return { -- Fuzzy Finder (files, lsp, etc)
         return vim.fn.executable 'make' == 1
       end,
     },
-    { 'nvim-telescope/telescope-ui-select.nvim' },
+    -- fork of nvim-telescope/telescope-ui-select.nvim
+    { 'trcoffman/telescope-ui-select.nvim' },
 
     -- Useful for getting pretty icons, but requires a Nerd Font.
-    { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
+    -- fork of nvim-tree/nvim-web-devicons
+    { 'trcoffman/nvim-web-devicons', enabled = vim.g.have_nerd_font },
   },
   config = function()
     -- Telescope is a fuzzy finder that comes with a lot of different things that

@@ -1,5 +1,6 @@
 return {
-  'nvim-orgmode/orgmode',
+  -- fork of nvim-orgmode/orgmode
+  'trcoffman/orgmode',
   lazy = true,
   ft = { 'org' },
   config = function()

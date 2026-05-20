@@ -1,11 +1,15 @@
 return {
-  'olimorris/codecompanion.nvim',
+  -- fork of olimorris/codecompanion.nvim
+  'trcoffman/codecompanion.nvim',
   enabled = false,
   dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-treesitter/nvim-treesitter',
+    -- fork of nvim-lua/plenary.nvim
+    'trcoffman/plenary.nvim',
+    -- fork of nvim-treesitter/nvim-treesitter
+    'trcoffman/nvim-treesitter',
     -- The following are optional:
-    { 'MeanderingProgrammer/render-markdown.nvim', ft = { 'markdown', 'codecompanion' } },
+    -- fork of MeanderingProgrammer/render-markdown.nvim
+    { 'trcoffman/render-markdown.nvim', ft = { 'markdown', 'codecompanion' } },
   },
   opts = {
     display = {

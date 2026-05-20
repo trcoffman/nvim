@@ -1,5 +1,6 @@
 return {
-  'LeonHeidelbach/trailblazer.nvim',
+  -- fork of LeonHeidelbach/trailblazer.nvim
+  'trcoffman/trailblazer.nvim',
   lazy = false,
   config = function()
     require('trailblazer').setup {

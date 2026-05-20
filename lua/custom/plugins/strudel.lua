@@ -1,5 +1,6 @@
 return {
-  'gruvw/strudel.nvim',
+  -- fork of gruvw/strudel.nvim
+  'trcoffman/strudel.nvim',
   build = 'npm ci',
   config = function()
     require('strudel').setup()

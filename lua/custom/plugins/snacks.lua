@@ -1,5 +1,6 @@
 return {
-  'folke/snacks.nvim',
+  -- fork of folke/snacks.nvim
+  'trcoffman/snacks.nvim',
   priority = 1000,
   lazy = false,
   ---@type snacks.Config

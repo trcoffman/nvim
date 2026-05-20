@@ -206,7 +206,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+  local lazyrepo = 'https://github.com/trcoffman/lazy.nvim.git' -- fork of folke/lazy.nvim
   local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
   if vim.v.shell_error ~= 0 then
     error('Error cloning lazy.nvim:\n' .. out)
@@ -227,7 +227,8 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  -- fork of tpope/vim-sleuth
+  'trcoffman/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -251,7 +252,8 @@ require('lazy').setup({
   -- after the plugin has been loaded as `require(MODULE).setup(opts)`.
 
   { -- Useful plugin to show you pending keybinds.
-    'folke/which-key.nvim',
+    -- fork of folke/which-key.nvim
+    'trcoffman/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
     opts = {
       -- delay between pressing a key and opening which-key (milliseconds)
@@ -315,7 +317,8 @@ require('lazy').setup({
   {
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
-    'folke/lazydev.nvim',
+    -- fork of folke/lazydev.nvim
+    'trcoffman/lazydev.nvim',
     ft = 'lua',
     opts = {
       library = {
@@ -326,20 +329,26 @@ require('lazy').setup({
   },
   {
     -- Main LSP Configuration
-    'neovim/nvim-lspconfig',
+    -- fork of neovim/nvim-lspconfig
+    'trcoffman/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-      { 'mason-org/mason.nvim', version = '^1.0.0', opts = {} },
-      { 'mason-org/mason-lspconfig.nvim', version = '^1.0.0' },
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
+      -- fork of williamboman/mason.nvim
+      { 'trcoffman/mason.nvim', version = '^1.0.0', opts = {} },
+      -- fork of williamboman/mason-lspconfig.nvim
+      { 'trcoffman/mason-lspconfig.nvim', version = '^1.0.0' },
+      -- fork of WhoIsSethDaniel/mason-tool-installer.nvim
+      'trcoffman/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
+      -- fork of j-hui/fidget.nvim
+      { 'trcoffman/fidget.nvim', opts = {} },
 
       -- Allows extra capabilities provided by blink.cmp
-      'saghen/blink.cmp',
+      -- fork of saghen/blink.cmp
+      'trcoffman/blink.cmp',
     },
     config = function()
       -- Brief aside: **What is LSP?**
@@ -623,7 +632,8 @@ require('lazy').setup({
   },
 
   { -- Autoformat
-    'stevearc/conform.nvim',
+    -- fork of stevearc/conform.nvim
+    'trcoffman/conform.nvim',
     enabled = vim.g.jj_diffconflicts_disable_conform ~= 'true',
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
@@ -679,13 +689,15 @@ require('lazy').setup({
   },
 
   { -- Autocompletion
-    'saghen/blink.cmp',
+    -- fork of saghen/blink.cmp
+    'trcoffman/blink.cmp',
     event = 'VimEnter',
     version = '1.*',
     dependencies = {
       -- Snippet Engine
       {
-        'L3MON4D3/LuaSnip',
+        -- fork of L3MON4D3/LuaSnip
+        'trcoffman/LuaSnip',
         version = '2.*',
         build = (function()
           -- Build Step is needed for regex support in snippets.
@@ -701,7 +713,8 @@ require('lazy').setup({
           --    See the README about individual language/framework/plugin snippets:
           --    https://github.com/rafamadriz/friendly-snippets
           -- {
-          --   'rafamadriz/friendly-snippets',
+          -- fork of rafamadriz/friendly-snippets
+          --   'trcoffman/friendly-snippets',
           --   config = function()
           --     require('luasnip.loaders.from_vscode').lazy_load()
           --   end,
@@ -712,7 +725,8 @@ require('lazy').setup({
           require 'custom.snippets'
         end,
       },
-      'folke/lazydev.nvim',
+      -- fork of folke/lazydev.nvim
+      'trcoffman/lazydev.nvim',
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -840,7 +854,8 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
+    -- fork of folke/tokyonight.nvim
+    'trcoffman/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     config = function()
       ---@diagnostic disable-next-line: missing-fields
@@ -858,10 +873,12 @@ require('lazy').setup({
   },
 
   -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
+  -- fork of folke/todo-comments.nvim, nvim-lua/plenary.nvim
+  { 'trcoffman/todo-comments.nvim', event = 'VimEnter', dependencies = { 'trcoffman/plenary.nvim' }, opts = { signs = false } },
 
   -- { -- Collection of various small independent plugins/modules
-  --   'echasnovski/mini.nvim',
+  -- fork of echasnovski/mini.nvim
+  --   'trcoffman/mini.nvim',
   --   config = function()
   --     -- Better Around/Inside textobjects
   --     --
@@ -898,12 +915,13 @@ require('lazy').setup({
   --   end,
   -- },
   { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
+    -- fork of nvim-treesitter/nvim-treesitter
+    'trcoffman/nvim-treesitter',
     build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    main = 'nvim-treesitter', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'javascript', 'typescript', 'tsx' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {

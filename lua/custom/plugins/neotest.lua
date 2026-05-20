@@ -52,16 +52,23 @@ local function cd_to_package_json_dir()
 end
 
 return {
-  'nvim-neotest/neotest',
+  -- fork of nvim-neotest/neotest
+  'trcoffman/neotest',
   dependencies = {
-    'nvim-neotest/neotest-jest',
-    'nvim-neotest/nvim-nio',
-    'nvim-lua/plenary.nvim',
-    'antoinemadec/FixCursorHold.nvim',
-    'nvim-treesitter/nvim-treesitter',
+    -- fork of nvim-neotest/neotest-jest
+    'trcoffman/neotest-jest',
+    -- fork of nvim-neotest/nvim-nio
+    'trcoffman/nvim-nio',
+    -- fork of nvim-lua/plenary.nvim
+    'trcoffman/plenary.nvim',
+    -- fork of antoinemadec/FixCursorHold.nvim
+    'trcoffman/FixCursorHold.nvim',
+    -- fork of nvim-treesitter/nvim-treesitter
+    'trcoffman/nvim-treesitter',
 
     -- Mark this as a depenency so that debugger loads right away
-    'mfussenegger/nvim-dap',
+    -- fork of mfussenegger/nvim-dap
+    'trcoffman/nvim-dap',
   },
   keys = {
     {

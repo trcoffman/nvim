@@ -1,8 +1,10 @@
 return {
-  'ibhagwan/fzf-lua',
+  -- fork of ibhagwan/fzf-lua
+  'trcoffman/fzf-lua',
   lazy = false,
   -- optional for icon support
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  -- fork of nvim-tree/nvim-web-devicons
+  dependencies = { 'trcoffman/nvim-web-devicons' },
   config = function()
     local fzf = require 'fzf-lua'
     fzf.setup {

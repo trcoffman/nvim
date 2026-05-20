@@ -1,9 +1,12 @@
 return {
-  'kid-icarus/jira.nvim',
+  -- fork of kid-icarus/jira.nvim
+  'trcoffman/jira.nvim',
   lazy = true,
   dependencies = {
-    'nvim-lua/plenary.nvim',
-    'folke/snacks.nvim', -- optional
+    -- fork of nvim-lua/plenary.nvim
+    'trcoffman/plenary.nvim',
+    -- fork of folke/snacks.nvim
+    'trcoffman/snacks.nvim', -- optional
   },
   keys = {
     { '<leader>jv', '<cmd>Jira issue view<cr>', desc = 'View Jira issue' },

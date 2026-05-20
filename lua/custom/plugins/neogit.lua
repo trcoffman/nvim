@@ -1,10 +1,14 @@
 return {
-  'NeogitOrg/neogit',
+  -- fork of NeogitOrg/neogit
+  'trcoffman/neogit',
   dependencies = {
-    'nvim-lua/plenary.nvim', -- required
-    'sindrets/diffview.nvim', -- optional - Diff integration
+    -- fork of nvim-lua/plenary.nvim
+    'trcoffman/plenary.nvim', -- required
+    -- fork of sindrets/diffview.nvim
+    'trcoffman/diffview.nvim', -- optional - Diff integration
 
-    'ibhagwan/fzf-lua',
+    -- fork of ibhagwan/fzf-lua
+    'trcoffman/fzf-lua',
   },
   --@module 'neogit'
   --@type neogit.SetupOpts

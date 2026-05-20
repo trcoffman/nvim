@@ -1,6 +1,7 @@
 ---@type LazySpec
 return {
-  'Fildo7525/pretty_hover',
+  -- fork of Fildo7525/pretty_hover
+  'trcoffman/pretty_hover',
   event = 'LspAttach',
   opts = {},
   keys = {

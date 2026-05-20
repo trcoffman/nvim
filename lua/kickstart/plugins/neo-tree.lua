@@ -2,12 +2,16 @@
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
 
 local disabled = {
-  'nvim-neo-tree/neo-tree.nvim',
+  -- fork of nvim-neo-tree/neo-tree.nvim
+  'trcoffman/neo-tree.nvim',
   version = '*',
   dependencies = {
-    'nvim-lua/plenary.nvim',
-    'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-    'MunifTanjim/nui.nvim',
+    -- fork of nvim-lua/plenary.nvim
+    'trcoffman/plenary.nvim',
+    -- fork of nvim-tree/nvim-web-devicons
+    'trcoffman/nvim-web-devicons', -- not strictly required, but recommended
+    -- fork of MunifTanjim/nui.nvim
+    'trcoffman/nui.nvim',
   },
   cmd = 'Neotree',
   keys = {

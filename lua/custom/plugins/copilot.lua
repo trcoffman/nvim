@@ -1,7 +1,9 @@
 return {
-  'zbirenbaum/copilot.lua',
+  -- fork of zbirenbaum/copilot.lua
+  'trcoffman/copilot.lua',
   dependencies = {
-    'copilotlsp-nvim/copilot-lsp', -- (optional) for NES functionality
+    -- fork of copilotlsp-nvim/copilot-lsp
+    'trcoffman/copilot-lsp', -- (optional) for NES functionality
   },
   cmd = 'Copilot',
   event = 'InsertEnter',

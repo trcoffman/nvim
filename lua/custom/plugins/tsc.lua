@@ -1,5 +1,6 @@
 return {
-  'dmmulroy/tsc.nvim',
+  -- fork of dmmulroy/tsc.nvim
+  'trcoffman/tsc.nvim',
   lazy = false,
   config = function()
     require('tsc').setup {

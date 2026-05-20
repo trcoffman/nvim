@@ -1,9 +1,12 @@
 ---@type LazySpec
 return {
-  'aaronik/treewalker.nvim',
+  -- fork of aaronik/treewalker.nvim
+  'trcoffman/treewalker.nvim',
   dependencies = {
-    'folke/which-key.nvim',
-    'nvimtools/hydra.nvim',
+    -- fork of folke/which-key.nvim
+    'trcoffman/which-key.nvim',
+    -- fork of nvimtools/hydra.nvim
+    'trcoffman/hydra.nvim',
   },
   lazy = false,
   config = function()

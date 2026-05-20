@@ -1,5 +1,6 @@
 return {
-  'GeorgesAlkhouri/nvim-aider',
+  -- fork of GeorgesAlkhouri/nvim-aider
+  'trcoffman/nvim-aider',
   enabled = false,
   cmd = 'Aider',
   -- Example key mappings for common actions:
@@ -16,9 +17,11 @@ return {
     { '<leader>a-', '<cmd>AiderTreeDropFile<cr>', desc = 'Drop File from Tree from Aider', ft = 'NvimTree' },
   },
   dependencies = {
-    'folke/snacks.nvim',
+    -- fork of folke/snacks.nvim
+    'trcoffman/snacks.nvim',
     --- The below dependencies are optional
-    'catppuccin/nvim',
+    -- fork of catppuccin/nvim
+    'trcoffman/nvim-1',
   },
   config = true,
 }

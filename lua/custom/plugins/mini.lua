@@ -1,7 +1,9 @@
 return { -- Collection of various small independent plugins/modules
-  'echasnovski/mini.nvim',
+  -- fork of echasnovski/mini.nvim
+  'trcoffman/mini.nvim',
   version = false,
-  dependencies = { 'mawkler/jsx-element.nvim' },
+  -- fork of mawkler/jsx-element.nvim
+  dependencies = { 'trcoffman/jsx-element.nvim' },
   config = function()
     -- Better Around/Inside textobjects
     --

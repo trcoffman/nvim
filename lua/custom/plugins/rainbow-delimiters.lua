@@ -1,3 +1,4 @@
 return {
-  'HiPhish/rainbow-delimiters.nvim',
+  -- fork of HiPhish/rainbow-delimiters.nvim
+  'trcoffman/rainbow-delimiters.nvim',
 }

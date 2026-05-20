@@ -1,7 +1,9 @@
 return {
-  'julienvincent/hunk.nvim',
+  -- fork of julienvincent/hunk.nvim
+  'trcoffman/hunk.nvim',
   dependencies = {
-    'MunifTanjim/nui.nvim',
+    -- fork of MunifTanjim/nui.nvim
+    'trcoffman/nui.nvim',
   },
   cmd = { 'DiffEditor' },
   config = function()

@@ -1,9 +1,11 @@
 return {
-  'ThePrimeagen/harpoon',
+  -- fork of ThePrimeagen/harpoon
+  'trcoffman/harpoon',
   branch = 'harpoon2',
   enabled = true,
   dependencies = {
-    'nvim-lua/plenary.nvim',
+    -- fork of nvim-lua/plenary.nvim
+    'trcoffman/plenary.nvim',
   },
   opts = {
     settings = {

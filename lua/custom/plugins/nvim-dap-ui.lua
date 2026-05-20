@@ -1,8 +1,10 @@
 ---@type LazySpec
 -- return {}
 return {
-  'rcarriga/nvim-dap-ui',
-  dependencies = { 'nvim-neotest/nvim-nio' },
+  -- fork of rcarriga/nvim-dap-ui
+  'trcoffman/nvim-dap-ui',
+  -- fork of nvim-neotest/nvim-nio
+  dependencies = { 'trcoffman/nvim-nio' },
   -- stylua: ignore
   keys = {
     { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },

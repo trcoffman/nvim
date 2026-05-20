@@ -1,6 +1,7 @@
 return {
   -- Do i actually need this?
-  'folke/trouble.nvim',
+  -- fork of folke/trouble.nvim
+  'trcoffman/trouble.nvim',
   config = function()
     require('trouble').setup()
     require('which-key').add {

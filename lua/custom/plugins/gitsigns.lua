@@ -1,5 +1,6 @@
 return {
-  'lewis6991/gitsigns.nvim',
+  -- fork of lewis6991/gitsigns.nvim
+  'trcoffman/gitsigns.nvim',
   event = 'BufReadPre',
 
   config = function()

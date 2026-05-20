@@ -1,7 +1,9 @@
 return {
-  '3rd/diagram.nvim',
+  -- fork of 3rd/diagram.nvim
+  'trcoffman/diagram.nvim',
   dependencies = {
-    '3rd/image.nvim',
+    -- fork of 3rd/image.nvim
+    'trcoffman/image.nvim',
   },
   opts = {
     -- Disable automatic rendering for manual-only workflow
