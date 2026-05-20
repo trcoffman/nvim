@@ -982,6 +982,9 @@ require('lazy').setup({
 local function treesitter_try_attach(buf, language)
   if not pcall(vim.treesitter.language.add, language) then return end
   pcall(vim.treesitter.start, buf, language)
+  -- Eagerly parse so the language tree has trees available for plugins like mini.ai
+  local ok, parser = pcall(vim.treesitter.get_parser, buf, language)
+  if ok and parser then parser:parse() end
   if vim.treesitter.query.get(language, 'indents') then
     vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end
@@ -1007,6 +1010,7 @@ vim.api.nvim_create_autocmd('FileType', {
     end
   end,
 })
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

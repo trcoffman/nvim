@@ -2,8 +2,7 @@
 return {
   -- fork of Goose97/timber.nvim
   'trcoffman/timber.nvim',
-  version = '*', -- Use for stability; omit to use `main` branch for the latest features
-  event = 'VeryLazy',
+event = 'VeryLazy',
   config = function()
     local jsTemplate = [[console.log('%watcher_marker_start %filename:%line_number ', '%log_target', %log_target, '%watcher_marker_end');]]
     local jsBatch = [[console.log('%watcher_marker_start %filename:%line_number ', { %repeat<%log_target><, > }, '%watcher_marker_end');]]
