@@ -40,6 +40,7 @@ return {
       },
     },
     notifier = {},
+    gh = {},
   },
   keys = {
     {
@@ -154,6 +155,20 @@ return {
         Snacks.explorer.reveal()
       end,
       desc = 'Reveal current file in [E]xplorer',
+    },
+    {
+      '<leader>sp',
+      function()
+        Snacks.picker.gh_pr()
+      end,
+      desc = 'GitHub Pull Requests (open)',
+    },
+    {
+      '<leader>sP',
+      function()
+        Snacks.picker.gh_pr { state = 'all' }
+      end,
+      desc = 'GitHub Pull Requests (all)',
     },
     {
       '<leader>gsl',
