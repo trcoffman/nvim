@@ -3,18 +3,27 @@ return {
   dependencies = {
     '3rd/image.nvim',
   },
-  config = function()
-    require('diagram').setup {
-      integrations = {
-        require 'diagram.integrations.markdown',
+  opts = {
+    -- Disable automatic rendering for manual-only workflow
+    events = {
+      render_buffer = {}, -- Empty = no automatic rendering
+      clear_buffer = { 'BufLeave' },
+    },
+    renderer_options = {
+      mermaid = {
+        scale = 5,
       },
-      renderer_options = {
-        mermaid = {
-          theme = 'forest',
-          background = 'white',
-          scale = 3,
-        },
-      },
-    }
-  end,
+    },
+  },
+  keys = {
+    {
+      'K', -- or any key you prefer
+      function()
+        require('diagram').show_diagram_hover()
+      end,
+      mode = 'n',
+      ft = { 'markdown', 'norg' }, -- Only in these filetypes
+      desc = 'Show diagram in new tab',
+    },
+  },
 }
