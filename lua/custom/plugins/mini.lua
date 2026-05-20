@@ -1,6 +1,7 @@
 return { -- Collection of various small independent plugins/modules
   'echasnovski/mini.nvim',
   version = false,
+  dependencies = { 'mawkler/jsx-element.nvim' },
   config = function()
     -- Better Around/Inside textobjects
     --
@@ -12,10 +13,15 @@ return { -- Collection of various small independent plugins/modules
 
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
     --
-    -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-    -- - sd'   - [S]urround [D]elete [']quotes
-    -- - sr)'  - [S]urround [R]eplace [)] [']
-    require('mini.surround').setup {
+    -- - gsaiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
+    -- - gsd'   - [S]urround [D]elete [']quotes
+    -- - gsr)'  - [S]urround [R]eplace [)] [']
+    -- - gsaitt - [S]urround [A]dd [I]nside [T]ag with JSX [T]ag
+    local surround = require 'mini.surround'
+    local ts_input = surround.gen_spec.input.treesitter
+    surround.setup {
+      -- Increase search lines for JSX elements
+      n_lines = 100,
       mappings = {
         add = 'gsa', -- Add surrounding in Normal and Visual modes
         delete = 'gsd', -- Delete surrounding
@@ -26,6 +32,70 @@ return { -- Collection of various small independent plugins/modules
 
         suffix_last = 'l', -- Suffix to search with "prev" method
         suffix_next = 'n', -- Suffix to search with "next" method
+      },
+      custom_surroundings = {
+        -- JSX tag surrounding using treesitter
+        -- Works with: <Button>content</Button>, <div>text</div>, etc.
+        -- Usage: gsdt (delete tag), gsrt (replace tag), gsaiwt (add tag)
+        t = {
+          input = function()
+            -- Get current node and find parent jsx_element
+            local node = vim.treesitter.get_node()
+            if not node then
+              return nil
+            end
+
+            -- Walk up the tree to find jsx_element or jsx_self_closing_element
+            while node do
+              local node_type = node:type()
+              if node_type == 'jsx_element' or node_type == 'jsx_self_closing_element' then
+                break
+              end
+              node = node:parent()
+            end
+
+            if not node then
+              return nil
+            end
+
+            -- For jsx_element, find the opening and closing tags
+            if node:type() == 'jsx_element' then
+              local opening = node:child(0) -- jsx_opening_element
+              local closing = node:child(node:child_count() - 1) -- jsx_closing_element
+
+              if not opening or not closing then
+                return nil
+              end
+
+              local open_start_row, open_start_col, open_end_row, open_end_col = opening:range()
+              local close_start_row, close_start_col, close_end_row, close_end_col = closing:range()
+
+              return {
+                left = {
+                  from = { line = open_start_row + 1, col = open_start_col + 1 },
+                  to = { line = open_end_row + 1, col = open_end_col },
+                },
+                right = {
+                  from = { line = close_start_row + 1, col = close_start_col + 1 },
+                  to = { line = close_end_row + 1, col = close_end_col },
+                },
+              }
+            else
+              -- Self-closing element - no surrounding to delete
+              return nil
+            end
+          end,
+          output = function()
+            local tag = surround.user_input 'Tag name'
+            if not tag then
+              return nil
+            end
+            return {
+              left = '<' .. tag .. '>',
+              right = '</' .. tag .. '>',
+            }
+          end,
+        },
       },
     }
 
