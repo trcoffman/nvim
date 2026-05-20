@@ -921,17 +921,8 @@ require('lazy').setup({
     main = 'nvim-treesitter', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
+      -- Pre-install parsers for common languages; others are installed on demand via the FileType autocmd below.
       ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'javascript', 'typescript', 'tsx' },
-      -- Autoinstall languages that are not installed
-      auto_install = true,
-      highlight = {
-        enable = true,
-        -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-        --  If you are experiencing weird indenting issues, add the language to
-        --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby', 'javascript', 'typescript', 'typescriptreact' } },
     },
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
@@ -985,6 +976,36 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
+})
+
+-- Treesitter attach pattern from https://github.com/nvim-lua/kickstart.nvim
+local function treesitter_try_attach(buf, language)
+  if not pcall(vim.treesitter.language.add, language) then return end
+  pcall(vim.treesitter.start, buf, language)
+  if vim.treesitter.query.get(language, 'indents') then
+    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+  end
+end
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('treesitter-attach', { clear = true }),
+  callback = function(args)
+    local language = vim.treesitter.language.get_lang(args.match)
+    if not language then return end
+
+    local installed = require('nvim-treesitter').get_installed 'parsers'
+    local available = require('nvim-treesitter').get_available()
+
+    if vim.tbl_contains(installed, language) then
+      treesitter_try_attach(args.buf, language)
+    elseif vim.tbl_contains(available, language) then
+      require('nvim-treesitter').install(language):await(function()
+        treesitter_try_attach(args.buf, language)
+      end)
+    else
+      treesitter_try_attach(args.buf, language)
+    end
+  end,
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
