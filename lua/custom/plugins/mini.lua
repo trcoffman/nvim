@@ -11,7 +11,19 @@ return { -- Collection of various small independent plugins/modules
     --  - va)  - [V]isually select [A]round [)]paren
     --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
     --  - ci'  - [C]hange [I]nside [']quote
-    require('mini.ai').setup { n_lines = 500 }
+    local ai = require 'mini.ai'
+    ai.setup { n_lines = 500 }
+
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = { 'typescriptreact', 'javascriptreact', 'javascript' },
+      callback = function()
+        vim.b.miniai_config = {
+          custom_textobjects = {
+            t = ai.gen_spec.treesitter { a = '@jsx_element.outer', i = '@jsx_element.inner' },
+          },
+        }
+      end,
+    })
 
     -- Add/delete/replace surroundings (brackets, quotes, etc.)
     --
