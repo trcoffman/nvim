@@ -23,6 +23,13 @@ end, { desc = '[T]oggle [D]iagnostics' })
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- Send literal escape to terminal; C-[ no longer works in nvim 0.11+ due to Esc equivalence
+vim.keymap.set('t', '<C-[>', function()
+  local chan = vim.bo.channel
+  if chan ~= 0 then
+    vim.api.nvim_chan_send(chan, '\27')
+  end
+end, { desc = 'Send literal escape to terminal' })
 
 -- TIP: Disable arrow keys in normal mode
 -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
