@@ -611,23 +611,27 @@ require('lazy').setup({
             -- KICKSTART DEFAULT
             -- require('lspconfig')[server_name].setup(server)
             -- CUSTOM REPLACEMENT
-            vim.lsp.enable(server_name)
             vim.lsp.config(server_name, server)
+            vim.lsp.enable(server_name)
           end,
         },
-
-        vim.lsp.enable 'sourcekit',
-        vim.lsp.config('sourcekit', {
-          cmd = { '/usr/bin/xcrun sourcekit-lsp' },
-          capabilities = {
-            workspace = {
-              didChangeWatchedFiles = {
-                dynamicRegistration = true,
-              },
-            },
-          },
-        }),
       }
+
+      local sourcekit_capabilities = vim.tbl_deep_extend('force', {}, capabilities, {
+        workspace = {
+          didChangeWatchedFiles = {
+            -- This monorepo contains hundreds of thousands of generated/cache
+            -- files, which can exhaust Neovim's file watchers.
+            dynamicRegistration = false,
+          },
+        },
+      })
+
+      vim.lsp.config('sourcekit', {
+        cmd = { '/usr/bin/xcrun', 'sourcekit-lsp' },
+        capabilities = sourcekit_capabilities,
+      })
+      vim.lsp.enable 'sourcekit'
     end,
   },
 
@@ -675,6 +679,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        swift = { 'swift' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -684,6 +689,37 @@ require('lazy').setup({
         typescriptreact = { 'prettierd', lsp_format = 'last' },
         json = { 'prettierd' },
         markdown = { 'prettierd' },
+      },
+      formatters = {
+        swift = {
+          command = '/usr/bin/xcrun',
+          args = function(_, ctx)
+            local args = { 'swift-format', 'format', ctx.filename, '--in-place' }
+            local config = vim.fs.find('.swift-format', {
+              path = ctx.dirname,
+              upward = true,
+              type = 'file',
+            })[1]
+
+            -- Storyteller's Swift package is rooted above libraries/, while
+            -- its formatter configuration lives with the native clients.
+            if not config then
+              local package_root = vim.fs.root(ctx.filename, 'Package.swift')
+              if package_root then
+                local storyteller_config = package_root .. '/applications/clients/.swift-format'
+                if vim.uv.fs_stat(storyteller_config) then
+                  config = storyteller_config
+                end
+              end
+            end
+
+            if config then
+              vim.list_extend(args, { '--configuration', config })
+            end
+            return args
+          end,
+          stdin = false,
+        },
       },
     },
   },
