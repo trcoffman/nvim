@@ -594,7 +594,9 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
+        'ktfmt', -- Used to format Kotlin code
         'stylua', -- Used to format Lua code
+        'tree-sitter-cli', -- Used to compile Treesitter parsers
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -603,6 +605,12 @@ require('lazy').setup({
         automatic_installation = false,
         handlers = {
           function(server_name)
+            -- Use JetBrains' official Kotlin server configured below, not
+            -- the older community server that may also be installed.
+            if server_name == 'kotlin_language_server' then
+              return
+            end
+
             local server = servers[server_name] or {}
             -- This handles overriding only values explicitly passed
             -- by the server configuration above. Useful when disabling
@@ -632,6 +640,40 @@ require('lazy').setup({
         capabilities = sourcekit_capabilities,
       })
       vim.lsp.enable 'sourcekit'
+
+      -- mason-lspconfig does not yet map JetBrains' official package to
+      -- nvim-lspconfig's kotlin_lsp config, so enable it explicitly. Keep a
+      -- non-expired release in Neovim's data directory until that integration
+      -- catches up with the server's current distribution layout.
+      local kotlin_lsp_command = vim.fn.stdpath('data') .. '/kotlin-lsp/current/bin/intellij-server'
+      local kotlin_lsp_session_dir = vim.fn.tempname() .. '-kotlin-lsp'
+      vim.fn.mkdir(kotlin_lsp_session_dir, 'p')
+
+      local kotlin_lsp_java_options = '-Duser.home=' .. kotlin_lsp_session_dir
+      if vim.env.IJ_JAVA_OPTIONS and vim.env.IJ_JAVA_OPTIONS ~= '' then
+        kotlin_lsp_java_options = vim.env.IJ_JAVA_OPTIONS .. ' ' .. kotlin_lsp_java_options
+      end
+
+      vim.lsp.config('kotlin_lsp', {
+        cmd = {
+          kotlin_lsp_command,
+          '--stdio',
+          '--system-path',
+          kotlin_lsp_session_dir .. '/system',
+        },
+        cmd_env = {
+          -- JetBrains derives its RocksDB lock path from the JVM user.home
+          -- property, ignoring --system-path. Isolate it so simultaneous
+          -- Neovim instances can safely index the same Kotlin workspace.
+          IJ_JAVA_OPTIONS = kotlin_lsp_java_options,
+          -- The Gradle tooling API also consults user.home. Continue using the
+          -- real, populated Gradle cache rather than downloading a fresh copy
+          -- for every isolated analyzer process.
+          GRADLE_USER_HOME = vim.fn.expand '~/.gradle',
+        },
+        capabilities = capabilities,
+      })
+      vim.lsp.enable 'kotlin_lsp'
     end,
   },
 
@@ -678,6 +720,7 @@ require('lazy').setup({
         }
       end,
       formatters_by_ft = {
+        kotlin = { 'ktfmt' },
         lua = { 'stylua' },
         swift = { 'swift' },
         -- Conform can also run multiple formatters sequentially
@@ -691,6 +734,16 @@ require('lazy').setup({
         markdown = { 'prettierd' },
       },
       formatters = {
+        ktfmt = {
+          args = function(_, ctx)
+            return {
+              '--kotlinlang-style',
+              '--enable-editorconfig',
+              '--stdin-name=' .. ctx.filename,
+              '-',
+            }
+          end,
+        },
         swift = {
           command = '/usr/bin/xcrun',
           args = function(_, ctx)
@@ -958,8 +1011,22 @@ require('lazy').setup({
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
       -- Pre-install parsers for common languages; others are installed on demand via the FileType autocmd below.
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'javascript', 'typescript', 'tsx' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'kotlin', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'javascript', 'typescript', 'tsx' },
     },
+    config = function(_, opts)
+      local treesitter = require 'nvim-treesitter'
+      treesitter.setup(opts)
+      treesitter.install { 'kotlin' }
+
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('kotlin-treesitter', { clear = true }),
+        pattern = 'kotlin',
+        callback = function(args)
+          vim.treesitter.start(args.buf, 'kotlin')
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+    end,
     -- There are additional nvim-treesitter modules that you can use to interact
     -- with nvim-treesitter. You should go explore a few and see what interests you:
     --
