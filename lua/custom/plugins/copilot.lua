@@ -5,6 +5,7 @@ return {
     -- fork of copilotlsp-nvim/copilot-lsp
     'trcoffman/copilot-lsp', -- (optional) for NES functionality
   },
+  enabled = vim.env.NVIM_DISABLE_COPILOT ~= 'true',
   cmd = 'Copilot',
   event = 'InsertEnter',
   config = function()
