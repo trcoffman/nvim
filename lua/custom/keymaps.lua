@@ -8,11 +8,10 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set('n', '<leader>td', function()
-  local diagnostics_enabled = vim.diagnostic.is_disabled()
-  if diagnostics_enabled then
-    vim.diagnostic.enable()
+  if vim.diagnostic.is_enabled() then
+    vim.diagnostic.enable(false)
   else
-    vim.diagnostic.disable()
+    vim.diagnostic.enable(true)
   end
 end, { desc = '[T]oggle [D]iagnostics' })
 
