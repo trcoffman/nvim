@@ -1,6 +1,7 @@
 return {
   -- fork of NeogitOrg/neogit
   'trcoffman/neogit',
+  lazy = false,
   dependencies = {
     -- fork of nvim-lua/plenary.nvim
     'trcoffman/plenary.nvim', -- required
