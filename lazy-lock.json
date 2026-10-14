@@ -3,7 +3,7 @@
   "LuaSnip": { "branch": "master", "commit": "642b0c595e11608b4c18219e93b88d7637af27bc" },
   "blink.cmp": { "branch": "main", "commit": "78336bc89ee5365633bcf754d93df01678b5c08f" },
   "codecompanion.nvim": { "branch": "main", "commit": "89382c89253832436a8bb2322ba1098285486000" },
-  "codetour": { "branch": "main", "commit": "ceabe4dd17975a0b18e0fd5cde5bbb2cedb929cc" },
+  "codetour": { "branch": "main", "commit": "6f9b1fbdd8100413fb4545a5cfc3ef3550076cc9" },
   "conform.nvim": { "branch": "master", "commit": "016802de402556da54c36bd7359b441266b01cdd" },
   "copilot-lsp": { "branch": "main", "commit": "1b6d8273594643f51bb4c0c1d819bdb21b42159d" },
   "copilot.lua": { "branch": "master", "commit": "f76a0a281de089e27b605ec8017093f1aab73b07" },
