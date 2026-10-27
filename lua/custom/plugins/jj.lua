@@ -8,6 +8,8 @@ return {
     'trcoffman/diffview.nvim', -- optional - diff backend
   },
   config = function()
-    require('jj').setup {}
+    require('jj').setup {
+      diff = { backend = 'diffview' },
+    }
   end,
 }
